@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Shakespeare AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1>🎭 Shakespeare Poem Generator</h1>
+
+        <textarea id="prompt" placeholder="Enter your prompt here..."></textarea>
+        <button onclick="generateText()">Generate</button>
+
+        <div class="output-box">
+          <h3>Output:</h3>
+          <p id="output"></p>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
