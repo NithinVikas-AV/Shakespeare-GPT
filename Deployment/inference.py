@@ -38,16 +38,22 @@ class Head(nn.Module):
         self.register_buffer('tril', torch.tril(torch.ones(block_size, block_size)))
         self.dropout = nn.Dropout(dropout)
 
-    def forward(self, x):
+    def forward(self, x, return_attention=False):
         B, T, C = x.shape
         k = self.key(x)
         q = self.query(x)
+
         wei = q @ k.transpose(-2, -1) * C**-0.5
         wei = wei.masked_fill(self.tril[:T,:T] == 0, float('-inf'))
         wei = F.softmax(wei, dim=-1)
+
+        if return_attention:
+            return wei.detach().cpu().numpy()
+
         wei = self.dropout(wei)
         v = self.value(x)
-        return wei @ v
+        out = wei @ v
+        return out
 
 
 class MultiHeadAttention(nn.Module):
@@ -130,10 +136,18 @@ model.eval()
 
 # ---------------- GENERATE ----------------
 
-def generate_poem(prompt, max_tokens=100):
+def generate_poem(prompt, max_tokens=200, temperature=1.0):
     idx = torch.tensor([encode(prompt)], dtype=torch.long).to(device)
-    generated = model.generate(idx, max_tokens)[0].tolist()
-    return decode(generated)
+
+    for _ in range(max_tokens):
+        idx_cond = idx[:, -block_size:]
+        logits = model(idx_cond)
+        logits = logits[:, -1, :] / temperature
+        probs = F.softmax(logits, dim=-1)
+        idx_next = torch.multinomial(probs, num_samples=1)
+        idx = torch.cat((idx, idx_next), dim=1)
+
+    return decode(idx[0].tolist())
 
 
 # # Example

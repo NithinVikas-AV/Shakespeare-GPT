@@ -1,21 +1,33 @@
 function generateText() {
     const prompt = document.getElementById("prompt").value;
-    const output = document.getElementById("output");
+    const temperature = document.getElementById("temperature").value;
+    const max_tokens = document.getElementById("max_tokens").value;
+    const outputDiv = document.getElementById("output");
 
-    output.innerText = "Generating... ⏳";
+    if (!prompt) return;
+
+    // Clear previous output
+    outputDiv.innerText = "Generating...";
 
     fetch("/generate", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
         },
-        body: JSON.stringify({ prompt: prompt }),
+        body: JSON.stringify({
+            prompt: prompt,
+            temperature: temperature,
+            max_tokens: max_tokens
+        })
     })
     .then(response => response.json())
     .then(data => {
-        output.innerText = data.response;
+        outputDiv.innerText = data.response;
     })
     .catch(() => {
-        output.innerText = "Something went wrong!";
+        outputDiv.innerText = "Something went wrong!";
     });
+
+    // Clear textarea after sending
+    document.getElementById("prompt").value = "";
 }

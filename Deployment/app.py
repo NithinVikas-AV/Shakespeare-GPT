@@ -11,7 +11,11 @@ def home():
 def generate():
     data = request.json
     prompt = data.get("prompt", "")
-    output = generate_poem(prompt)
+    temperature = float(data.get("temperature", 1.0))
+    max_tokens = int(data.get("max_tokens", 200))
+
+    output = generate_poem(prompt, max_tokens=max_tokens, temperature=temperature)
+
     return jsonify({"response": output})
 
 if __name__ == "__main__":

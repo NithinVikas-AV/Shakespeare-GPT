@@ -1,25 +1,39 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Shakespeare AI</title>
+<head>
+    <title>Shakespeare GPT</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  </head>
+</head>
+<body>
 
-  <body>
-    <div class="container">
-      <div class="card">
-        <h1>🎭 Shakespeare Poem Generator</h1>
+<div class="container">
+    <div class="card">
+        <h1>🎭 Shakespeare GPT</h1>
 
-        <textarea id="prompt" placeholder="Enter your prompt here..."></textarea>
+        <textarea id="prompt" placeholder="Enter your start phrase..."></textarea>
+
+        <div class="config">
+            <div>
+                <label>Temperature (0 - 5)</label>
+                <input type="number" id="temperature" value="1.0" step="0.1" min="0.1" max="2.0">
+            </div>
+
+            <div>
+                <label>Max Tokens</label>
+                <input type="number" id="max_tokens" value="200" min="10" max="1000">
+            </div>
+        </div>
+
         <button onclick="generateText()">Generate</button>
 
         <div class="output-box">
-          <h3>Output:</h3>
-          <p id="output"></p>
+            <h3>Generated Output</h3>
+            <div id="output"></div>
         </div>
-      </div>
-    </div>
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-  </body>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
 </html>
