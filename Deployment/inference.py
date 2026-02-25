@@ -2,8 +2,8 @@ import torch
 import json
 from model import BigramLanguageModel
 
-device = "cuda" if torch.cuda.is_available() else "cpu"
-
+# device = "cuda" if torch.cuda.is_available() else "cpu" # Local Testing
+device = "cpu"
 
 # -------- Load Vocabulary --------
 with open("vocab.json", "r") as f:
