@@ -1,39 +1,66 @@
 <!doctype html>
 <html>
-<head>
+  <head>
     <title>Shakespeare GPT</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <!-- GitHub Link -->
+    <a
+      href="https://github.com/NithinVikas-AV/Shakespeare-GPT"
+      class="github-link"
+      target="_blank"
+    >
+      GitHub
+    </a>
 
-<div class="container">
-    <div class="card">
-        <h1>🎭 Shakespeare GPT</h1>
+    <div class="container">
+      <!-- LEFT PANEL -->
+      <div class="left-panel">
+        <h1>Shakespeare GPT</h1>
 
-        <textarea id="prompt" placeholder="Enter your start phrase..."></textarea>
+        <label>Select Model</label>
+        <select id="model">
+          <option value="small">Small</option>
+          <option value="medium" selected>Medium</option>
+          <option value="large">Large</option>
+        </select>
 
-        <div class="config">
-            <div>
-                <label>Temperature (0 - 5)</label>
-                <input type="number" id="temperature" value="1.0" step="0.1" min="0.1" max="2.0">
-            </div>
+        <label>Start Phrase</label>
+        <textarea
+          id="prompt"
+          rows="6"
+          placeholder="Enter your Starting Phrase here..."
+        ></textarea>
 
-            <div>
-                <label>Max Tokens</label>
-                <input type="number" id="max_tokens" value="200" min="10" max="1000">
-            </div>
+        <div class="input-row">
+          <div>
+            <label>Temperature (0 - 5)</label>
+            <input type="number" id="temperature" value="1.0" step="0.1" />
+          </div>
+
+          <div>
+            <label>Max Tokens</label>
+            <input type="number" id="max_tokens" value="200" />
+          </div>
         </div>
 
         <button onclick="generateText()">Generate</button>
 
-        <div class="output-box">
-            <h3>Generated Output</h3>
-            <div id="output"></div>
+        <h3>Output</h3>
+        <div id="output-box">
+          <p id="output"></p>
         </div>
+      </div>
 
+      <!-- RIGHT PANEL -->
+      <div class="right-panel">
+        <h3>Model Configuration</h3>
+
+        <table id="model-table"></table>
+      </div>
     </div>
-</div>
 
-<script src="{{ url_for('static', filename='script.js') }}"></script>
-</body>
+    <script src="/static/script.js"></script>
+  </body>
 </html>
