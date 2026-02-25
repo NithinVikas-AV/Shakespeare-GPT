@@ -1,3 +1,6 @@
 gpt_env
 Deployment/__pycache__
 Deployment/venv
+Deployment/models/model_large.pth
+Deployment/models/model_medium.pth
+Deployment/models/model_small.pth
