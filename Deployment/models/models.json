@@ -1,0 +1,44 @@
+{
+  "small": {
+    "file": "models/model_small.pth",
+    "parameters": 0.4,
+    "n_embd": 128,
+    "n_head": 2,
+    "n_layer": 2,
+    "block_size": 128,
+    "batch_size": 32,
+    "dropout": 0.2,
+    "learning_rate": 3e-4,
+    "max_iters": 4000,
+    "train_loss": 1.8126,
+    "val_loss": 1.9313
+  },
+  "medium": {
+    "file": "models/model_medium.pth",
+    "parameters": 3.2,
+    "n_embd": 256,
+    "n_head": 4,
+    "n_layer": 4,
+    "block_size": 128,
+    "batch_size": 32,
+    "dropout": 0.2,
+    "learning_rate": 3e-4,
+    "max_iters": 5000,
+    "train_loss": 1.4079,
+    "val_loss": 1.6154
+  },
+  "large": {
+    "file": "models/model_large.pth",
+    "parameters": 10.7,
+    "n_embd": 384,
+    "n_head": 6,
+    "n_layer": 6,
+    "block_size": 128,
+    "batch_size": 16,
+    "dropout": 0.1,
+    "learning_rate": 2e-3,
+    "max_iters": 6000,
+    "train_loss": 1.3352,
+    "val_loss": 1.5659
+  }
+}
