@@ -1,92 +1,114 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: Arial, sans-serif;
-    background: grey;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: #111;
+    color: #f0f0f0;
+    margin: 0;
+}
+
+.github-link {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #4da6ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.github-link:hover {
+    text-decoration: underline;
 }
 
 .container {
-    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 60px 80px;
 }
 
-.card {
-    width: 600px;
-    max-width: 95%;
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+.left-panel {
+    width: 60%;
 }
 
-.card h1 {
-    text-align: center;
+.right-panel {
+    width: 32%;
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h1 {
     margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 14px;
 }
 
 textarea {
     width: 100%;
-    height: 100px;
     padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+    background: #222;
+    border: 1px solid #333;
+    color: white;
+    border-radius: 5px;
     resize: none;
-    margin-bottom: 15px;
-    font-size: 14px;
 }
 
-.config {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
-
-.config div {
-    display: flex;
-    flex-direction: column;
-    width: 48%;
-}
-
-input[type="number"] {
+select,
+input {
+    width: 100%;
     padding: 8px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+    background: #222;
+    border: 1px solid #333;
+    color: white;
+    border-radius: 5px;
+}
+
+.input-row {
+    display: flex;
+    gap: 20px;
+}
+
+.input-row div {
+    flex: 1;
 }
 
 button {
-    width: 100%;
-    padding: 12px;
-    background-color: #2c2c54;
-    color: white;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #4da6ff;
     border: none;
-    border-radius: 8px;
-    font-size: 15px;
+    border-radius: 5px;
+    color: white;
     cursor: pointer;
-    transition: 0.2s;
+    font-size: 14px;
 }
 
 button:hover {
-    background-color: #40407a;
+    background: #3a8ddb;
 }
 
-.output-box {
-    margin-top: 20px;
-}
-
-#output {
-    margin-top: 10px;
-    background: #f1f3f6;
+#output-box {
+    margin-top: 15px;
     padding: 15px;
+    background: #1e1e1e;
     border-radius: 8px;
-    min-height: 120px;
-    white-space: pre-wrap;
+    min-height: 150px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 8px 5px;
+    border-bottom: 1px solid #333;
+    font-size: 14px;
+}
+
+td:first-child {
+    font-weight: bold;
 }
