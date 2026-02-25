@@ -2,8 +2,8 @@ import torch
 import json
 from model import BigramLanguageModel
 
-# -------- Device --------
 device = "cuda" if torch.cuda.is_available() else "cpu"
+
 
 # -------- Load Vocabulary --------
 with open("vocab.json", "r") as f:
@@ -13,8 +13,10 @@ stoi = vocab["stoi"]
 itos = {int(k): v for k, v in vocab["itos"].items()}
 vocab_size = vocab["vocab_size"]
 
+
 def encode(s):
     return [stoi[c] for c in s if c in stoi]
+
 
 def decode(l):
     return "".join([itos[i] for i in l])
@@ -24,21 +26,16 @@ def decode(l):
 with open("models/models.json", "r") as f:
     MODEL_CONFIG = json.load(f)
 
-# Cache models to avoid reloading every request
 MODEL_CACHE = {}
 
 
 def load_model(model_name):
-    """
-    Loads model from models.json configuration.
-    Uses caching to prevent reloading every time.
-    """
 
     if model_name in MODEL_CACHE:
         return MODEL_CACHE[model_name]
 
     if model_name not in MODEL_CONFIG:
-        raise ValueError(f"Model '{model_name}' not found in models.json")
+        raise ValueError(f"Model '{model_name}' not found")
 
     config = MODEL_CONFIG[model_name]
 
@@ -66,11 +63,14 @@ def generate_poem(model_name,
                   prompt,
                   max_tokens=200,
                   temperature=1.0):
-    """
-    Main function used by Flask route.
-    """
+
+    if temperature <= 0:
+        temperature = 1.0
 
     model = load_model(model_name)
+
+    if not prompt:
+        prompt = " "  # prevent empty tensor issue
 
     idx = torch.tensor(
         [encode(prompt)],
